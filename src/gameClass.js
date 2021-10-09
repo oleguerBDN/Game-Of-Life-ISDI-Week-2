@@ -16,7 +16,7 @@ class GameBoard {
     }
   }
 
-  // Returns a new array with the same values
+  // Return a new array with the same values
   copy() {
     const newBoard = [];
     for (let row = 0; row < this.size; row++) {
@@ -25,23 +25,40 @@ class GameBoard {
         newBoard[row][col] = this.board[row][col];
       }
     }
+    console.table(newBoard);
     return newBoard;
   }
 
   // Return a new array (copy)  with updated positions
-  modifiedCopy() {}
+  updatedCopy() {
+    const newBoard = this.copy();
+    console.table(newBoard);
+    for (let row = 0; row < this.size; row++) {
+      for (let col = 0; col < this.size; col++) {
+        if (this.isGoingToLive(row, col)) {
+          newBoard[row][col] = 1;
+        } else {
+          newBoard[row][col] = 0;
+        }
+      }
+    }
+    return newBoard;
+  }
 
   // Return true (current position should live) or false (current position should die) after checking for neighbours
   isGoingToLive(y, x) {
     let neighboursAlive = 0;
     for (let row = 0; row < this.size; row++) {
       for (let col = 0; col < this.size; col++) {
-        if (row >= y - 1 && row <= y + 1 && col >= x - 1 && col <= x + 1) {
-          if (row !== y || col !== x) {
-            if (this.board[row][col] === 1) {
-              neighboursAlive++;
-            }
-          }
+        if (
+          row >= y - 1 &&
+          row <= y + 1 &&
+          col >= x - 1 &&
+          col <= x + 1 &&
+          (row !== y || col !== x) &&
+          this.board[row][col] === 1
+        ) {
+          neighboursAlive++;
         }
       }
     }
