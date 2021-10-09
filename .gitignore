@@ -110,3 +110,6 @@ node_modules
 #sonarscanner
 .scannerwork
 sonar-project.properties
+
+#css 
+*.css
