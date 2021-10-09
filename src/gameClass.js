@@ -27,14 +27,12 @@ class GameBoard {
         newBoard[row][col] = this.board[row][col];
       }
     }
-    console.table(newBoard);
     return newBoard;
   }
 
   // Return a new array (copy)  with updated positions
   updatedCopy() {
     const newBoard = this.copy();
-    console.table(newBoard);
     for (let row = 0; row < this.size; row++) {
       for (let col = 0; col < this.size; col++) {
         if (this.isGoingToLive(row, col)) {

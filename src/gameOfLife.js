@@ -20,3 +20,15 @@ let p = setInterval(function () {
   k.updatePrintedBoard();
   k.board = k.updatedCopy();
 }, 2000);
+
+let modColor = (e) => {
+  e.target.style.backgroundColor = "green";
+};
+let assignEvents = (element) => {
+  element.onclick = modColor;
+};
+
+const matches = document.querySelectorAll(".death");
+const elementsToListen = [];
+matches.forEach((cell) => elementsToListen.push(cell));
+elementsToListen.forEach(assignEvents);
