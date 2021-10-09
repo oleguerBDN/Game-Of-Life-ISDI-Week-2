@@ -76,6 +76,19 @@ describe("Given a gameBoard class", () => {
       const result = newGame.isGoingToLive(1, 2);
       expect(result).toBe(expected);
     });
+    test("Then it should return true (corner case)", () => {
+      const expected = true;
+
+      const newGame = new GameBoard(3);
+      newGame.board = [
+        [0, 1, 0],
+        [0, 1, 1],
+        [0, 1, 0],
+      ];
+
+      const result = newGame.isGoingToLive(0, 2);
+      expect(result).toBe(expected);
+    });
   });
 
   describe("When calling isGoingToLive method with parameters from a neighbour that should NOT live", () => {
@@ -90,6 +103,20 @@ describe("Given a gameBoard class", () => {
       ];
 
       const result = newGame.isGoingToLive(0, 1);
+      expect(result).toBe(expected);
+    });
+
+    test("Then it should return false (corner case)", () => {
+      const expected = false;
+
+      const newGame = new GameBoard(3);
+      newGame.board = [
+        [0, 1, 0],
+        [0, 1, 0],
+        [1, 0, 0],
+      ];
+
+      const result = newGame.isGoingToLive(2, 0);
       expect(result).toBe(expected);
     });
   });
