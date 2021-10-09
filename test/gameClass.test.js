@@ -160,4 +160,35 @@ describe("Given a gameBoard class", () => {
       expect(result).toEqual(expected);
     });
   });
+
+  describe("When calling isAlive method with parameters from a neighbour that is alive", () => {
+    test("Then it should return true", () => {
+      const expected = true;
+
+      const newGame = new GameBoard(3);
+      newGame.board = [
+        [0, 1, 0],
+        [0, 1, 0],
+        [0, 1, 0],
+      ];
+
+      const result = newGame.isAlive(0, 1);
+      expect(result).toBe(expected);
+    });
+  });
+  describe("When calling isAlive method with parameters from a neighbour that is dead", () => {
+    test("Then it should return false ", () => {
+      const expected = false;
+
+      const newGame = new GameBoard(3);
+      newGame.board = [
+        [0, 1, 0],
+        [0, 1, 0],
+        [1, 0, 0],
+      ];
+
+      const result = newGame.isAlive(2, 1);
+      expect(result).toBe(expected);
+    });
+  });
 });
