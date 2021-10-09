@@ -27,6 +27,8 @@
     "sass": "^1.42.1"
   },
   "dependencies": {
-    "browserify": "^17.0.0"
+    "browserify": "^17.0.0",
+    "timers-browserify": "^2.0.12",
+    "timers-browserify-full": "^0.0.1"
   }
 }

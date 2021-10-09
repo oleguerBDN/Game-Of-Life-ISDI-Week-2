@@ -2,6 +2,8 @@
 class GameBoard {
   board = [];
   size = 10;
+  deathClass = "death";
+  aliveClass = "alive";
 
   // Default board size will be 10 if there's no number specified on the constructor
   constructor(boardSize) {
@@ -68,6 +70,12 @@ class GameBoard {
     );
   }
 
+  // Return true (current position should live) or false (current position should die) after checking for neighbours
+  isAlive(y, x) {
+    return this.board[y][x] === 1 ? true : false;
+  }
+
+  // Print initial board
   printInitBoard() {
     for (let row = 0; row < this.size; row++) {
       let newDiv = document.createElement("div");
@@ -77,8 +85,23 @@ class GameBoard {
       for (let col = 0; col < this.size; col++) {
         let newChildDiv = document.createElement("div");
         newChildDiv.id = row + "" + col;
-        newChildDiv.className = row + "" + col;
+        this.isAlive(row, col)
+          ? (newChildDiv.className = this.aliveClass)
+          : (newChildDiv.className = this.deathClass);
         document.getElementById("row" + row).appendChild(newChildDiv);
+      }
+    }
+  }
+
+  // Update printed board
+  updatePrintedBoard() {
+    let currentCell;
+    for (let row = 0; row < this.size; row++) {
+      for (let col = 0; col < this.size; col++) {
+        currentCell = document.getElementById(row + "" + col);
+        this.isAlive(row, col)
+          ? (currentCell.className = this.aliveClass)
+          : (currentCell.className = this.deathClass);
       }
     }
   }
@@ -90,7 +113,26 @@ module.exports = { GameBoard };
 const { GameBoard } = require("./gameClass");
 
 const k = new GameBoard(10);
-console.log(k);
+
+k.board[1][0] = 1;
+k.board[1][1] = 1;
+k.board[1][2] = 1;
+k.board[5][2] = 1;
+k.board[5][3] = 1;
+k.board[5][4] = 1;
+k.board[7][4] = 1;
+k.board[8][9] = 1;
+k.board[8][8] = 1;
+
 k.printInitBoard();
+let z = 0;
+
+let p = setInterval(function () {
+  z = z + 1;
+  k.updatePrintedBoard();
+  k.board = k.updatedCopy;
+
+  document.getElementById("container").innerHTML = z;
+}, 1000);
 
 },{"./gameClass":1}]},{},[2]);
