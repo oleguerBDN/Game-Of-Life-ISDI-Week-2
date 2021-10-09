@@ -2,6 +2,8 @@
 class GameBoard {
   board = [];
   size = 10;
+  deathClass = "deathClass";
+  aliveClass = "aliveClass";
 
   // Default board size will be 10 if there's no number specified on the constructor
   constructor(boardSize) {
@@ -68,6 +70,11 @@ class GameBoard {
     );
   }
 
+  // Return true (current position should live) or false (current position should die) after checking for neighbours
+  isAlive(y, x) {
+    return this.board[y][x] === 1 ? true : false;
+  }
+
   printInitBoard() {
     for (let row = 0; row < this.size; row++) {
       let newDiv = document.createElement("div");
@@ -77,7 +84,7 @@ class GameBoard {
       for (let col = 0; col < this.size; col++) {
         let newChildDiv = document.createElement("div");
         newChildDiv.id = row + "" + col;
-        newChildDiv.className = row + "" + col;
+        //newChildDiv.className = this.....;
         document.getElementById("row" + row).appendChild(newChildDiv);
       }
     }
