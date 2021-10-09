@@ -120,4 +120,44 @@ describe("Given a gameBoard class", () => {
       expect(result).toBe(expected);
     });
   });
+
+  describe("When calling updatedCopy method that updates live neightbours ", () => {
+    test("Then it should return an updated copy of the board property", () => {
+      const expected = [
+        [0, 1, 0],
+        [0, 1, 0],
+        [0, 1, 0],
+      ];
+
+      const newGame = new GameBoard(3);
+      newGame.board = [
+        [0, 0, 0],
+        [1, 1, 1],
+        [0, 0, 0],
+      ];
+
+      const result = newGame.updatedCopy();
+
+      expect(result).toEqual(expected);
+    });
+
+    test("Then it should return an updated copy of the board property (corner case)", () => {
+      const expected = [
+        [0, 1, 1],
+        [0, 1, 1],
+        [0, 0, 0],
+      ];
+
+      const newGame = new GameBoard(3);
+      newGame.board = [
+        [0, 1, 0],
+        [0, 1, 1],
+        [0, 0, 0],
+      ];
+
+      const result = newGame.updatedCopy();
+
+      expect(result).toEqual(expected);
+    });
+  });
 });
