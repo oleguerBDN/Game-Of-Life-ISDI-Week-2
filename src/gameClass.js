@@ -16,7 +16,7 @@ class GameBoard {
     }
   }
 
-  // Returns a new array with the same values
+  // Return a new array with the same values
   copy() {
     const newBoard = [];
     for (let row = 0; row < this.size; row++) {
@@ -36,12 +36,15 @@ class GameBoard {
     let neighboursAlive = 0;
     for (let row = 0; row < this.size; row++) {
       for (let col = 0; col < this.size; col++) {
-        if (row >= y - 1 && row <= y + 1 && col >= x - 1 && col <= x + 1) {
-          if (row !== y || col !== x) {
-            if (this.board[row][col] === 1) {
-              neighboursAlive++;
-            }
-          }
+        if (
+          row >= y - 1 &&
+          row <= y + 1 &&
+          col >= x - 1 &&
+          col <= x + 1 &&
+          (row !== y || col !== x) &&
+          this.board[row][col] === 1
+        ) {
+          neighboursAlive++;
         }
       }
     }
