@@ -5,7 +5,9 @@ class GameBoard {
 
   // Default board size will be 10 if there's no number specified on the constructor
   constructor(boardSize) {
-    if (typeof boardSize !== "number") boardSize = this.boardSize;
+    typeof boardSize !== "number"
+      ? (boardSize = this.boardSize)
+      : (this.boardSize = boardSize);
     this.length = boardSize - 1;
 
     for (let row = 0; row < boardSize; row++) {

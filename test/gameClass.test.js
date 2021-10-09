@@ -14,6 +14,15 @@ describe("Given a gameBoard class", () => {
 
       expect(result).toEqual(expected);
     });
+
+    test("Then the boardSize propertie should return 3", () => {
+      const expected = 3;
+
+      const newGame = new GameBoard(3);
+      const result = newGame.boardSize;
+
+      expect(result).toBe(expected);
+    });
   });
 
   describe("When creating a new gameBoard object with parameter different to a number", () => {
