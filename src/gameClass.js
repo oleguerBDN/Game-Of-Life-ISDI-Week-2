@@ -93,7 +93,7 @@ class GameBoard {
   }
 
   // Update printed board
-  updatePrintedInitBoard() {
+  updatePrintedBoard() {
     let currentCell;
     for (let row = 0; row < this.size; row++) {
       for (let col = 0; col < this.size; col++) {
