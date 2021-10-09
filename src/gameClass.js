@@ -29,7 +29,19 @@ class GameBoard {
   }
 
   // Return a new array (copy)  with updated positions
-  modifiedCopy() {}
+  updatedCopy() {
+    const newBoard = this.copy;
+    for (let row = 0; row < this.size; row++) {
+      for (let col = 0; col < this.size; col++) {
+        if (this.isGoingToLive(row, col)) {
+          newBoard[row][col] = 1;
+        } else {
+          newBoard[row][col] = 0;
+        }
+      }
+    }
+    return newBoard;
+  }
 
   // Return true (current position should live) or false (current position should die) after checking for neighbours
   isGoingToLive(y, x) {
