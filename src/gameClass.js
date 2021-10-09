@@ -19,7 +19,16 @@ class GameBoard {
   }
 
   // Returns a new array with the same values
-  copy() {}
+  copy() {
+    const newBoard = [];
+    for (let row = 0; row < this.boardSize; row++) {
+      newBoard[row] = [];
+      for (let col = 0; col < this.boardSize; col++) {
+        newBoard[row][col] = this.board[row][col];
+      }
+    }
+    return newBoard;
+  }
 
   // Return a new array (copy)  with updated positions
   modifiedCopy() {}
@@ -28,9 +37,11 @@ class GameBoard {
   isGoingToLive() {}
 }
 
-let k = new GameBoard("pfdrpf");
-console.table(k.board);
-console.table(k.boardSize);
+let p = new GameBoard("pfdrpf");
+let k = p.copy();
+p.board[0][2] = 1;
+
+console.table(p.board);
 console.table(k.length);
 
 module.exports = { GameBoard };

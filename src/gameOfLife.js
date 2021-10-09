@@ -1,10 +1,10 @@
-const x = 10;
+const this.length = 10;
 let arr = [];
 
 // Create table x*x
-for (let i = 0; i < x; i++) {
+for (let i = 0; i < this.length; i++) {
   arr[i] = [];
-  for (let k = 0; k < x; k++) {
+  for (let k = 0; k < this.length; k++) {
     arr[i][k] = 0;
   }
 }
@@ -29,9 +29,9 @@ const checkVecinos = (myArr, posY, posX) => {
 // Copy array
 const copyArr = (myArr) => {
   const newArr = [];
-  for (let i = 0; i < x; i++) {
+  for (let i = 0; i < this.length; i++) {
     newArr[i] = [];
-    for (let k = 0; k < x; k++) {
+    for (let k = 0; k < this.length; k++) {
       newArr[i][k] = myArr[i][k];
     }
   }

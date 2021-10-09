@@ -46,4 +46,19 @@ describe("Given a gameBoard class", () => {
       expect(result).toEqual(expected);
     });
   });
+
+  describe("When calling copy method ", () => {
+    test("Then it should return a exact copy of the board property", () => {
+      const expected = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+      ];
+
+      const newGame = new GameBoard(3);
+      const result = newGame.copy();
+
+      expect(result).toEqual(expected);
+    });
+  });
 });
