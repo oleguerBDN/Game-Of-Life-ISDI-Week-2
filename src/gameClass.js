@@ -67,7 +67,20 @@ class GameBoard {
     );
   }
 
-  printBoard() {}
+  printInitBoard() {
+    for (let row = 0; row < this.size; row++) {
+      let newDiv = document.createElement("div");
+      newDiv.id = "row" + row;
+      newDiv.className = "row";
+      document.getElementById("container").appendChild(newDiv);
+      for (let col = 0; col < this.size; col++) {
+        let newChildDiv = document.createElement("div");
+        newChildDiv.id = row + "" + col;
+        newChildDiv.className = row + "" + col;
+        document.getElementById("row" + row).appendChild(newChildDiv);
+      }
+    }
+  }
 }
 
 module.exports = { GameBoard };
