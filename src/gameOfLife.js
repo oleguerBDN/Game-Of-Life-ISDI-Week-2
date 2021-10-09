@@ -1,4 +1,3 @@
-const this.length = 10;
 let arr = [];
 
 // Create table x*x
