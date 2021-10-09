@@ -2,10 +2,7 @@
   "name": "202109-w2weekend",
   "version": "1.0.0",
   "description": "",
-  "main": ".eslintrc.js",
-  "directories": {
-    "test": "test"
-  },
+  "main": "index.js",
   "scripts": {
     "test": "npx jest",
     "compile-sass": "npx sass --watch src/styles.scss src/styles.css"
@@ -26,6 +23,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
-    "jest": "^27.2.5"
+    "jest": "^27.2.5",
+    "sass": "^1.42.1"
   }
 }
