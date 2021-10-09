@@ -66,6 +66,8 @@ class GameBoard {
       (neighboursAlive === 2 && this.board[y][x] === 1) || neighboursAlive === 3
     );
   }
+
+  printBoard() {}
 }
 
 module.exports = { GameBoard };
