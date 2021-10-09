@@ -55,9 +55,13 @@ const modArr = (myArr) => {
   return newArr;
 };
 
-arr[1][0] = 1;
-arr[1][1] = 1;
-arr[1][2] = 1;
+arr[0][0] = 1;
+arr[0][1] = 1;
+arr[0][2] = 1;
+
+arr[7][0] = 1;
+arr[7][1] = 1;
+arr[7][2] = 1;
 
 arr[0][8] = 1;
 arr[0][9] = 1;
