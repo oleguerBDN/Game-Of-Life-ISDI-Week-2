@@ -1,4 +1,4 @@
-class gameBoard {
+class GameBoard {
   board = [];
   boardSize = 10;
   length = 0;
@@ -26,9 +26,9 @@ class gameBoard {
   isGoingToLive() {}
 }
 
-let k = new gameBoard("pfdrpf");
-console.table(k.game);
+let k = new GameBoard("pfdrpf");
+console.table(k.board);
 console.table(k.boardSize);
 console.table(k.length);
 
-module.exports = { gameBoard };
+module.exports = { GameBoard };
