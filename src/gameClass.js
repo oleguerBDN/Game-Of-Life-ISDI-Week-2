@@ -32,7 +32,23 @@ class GameBoard {
   modifiedCopy() {}
 
   // Return true (current position should live) or false (current position should die) after checking for neighbours
-  isGoingToLive() {}
+  isGoingToLive(y, x) {
+    let neighboursAlive = 0;
+    for (let row = 0; row < this.size; row++) {
+      for (let col = 0; col < this.size; col++) {
+        if (row >= y - 1 && row <= y + 1 && col >= x - 1 && col <= x + 1) {
+          if (row !== y || col !== x) {
+            if (this.board[row][col] === 1) {
+              neighboursAlive++;
+            }
+          }
+        }
+      }
+    }
+    return (
+      (neighboursAlive === 2 && this.board[y][x] === 1) || neighboursAlive === 3
+    );
+  }
 }
 
 module.exports = { GameBoard };
