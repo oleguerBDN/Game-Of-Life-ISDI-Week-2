@@ -74,6 +74,7 @@ class GameBoard {
     return this.board[y][x] === 1 ? true : false;
   }
 
+  // Print initial board
   printInitBoard() {
     for (let row = 0; row < this.size; row++) {
       let newDiv = document.createElement("div");
@@ -87,6 +88,19 @@ class GameBoard {
           ? (newChildDiv.className = this.aliveClass)
           : (newChildDiv.className = this.deathClass);
         document.getElementById("row" + row).appendChild(newChildDiv);
+      }
+    }
+  }
+
+  // Update printed board
+  updatePrintedInitBoard() {
+    let currentCell;
+    for (let row = 0; row < this.size; row++) {
+      for (let col = 0; col < this.size; col++) {
+        currentCell = document.getElementById(row + "" + col);
+        this.isAlive(row, col)
+          ? (currentCell.className = this.aliveClass)
+          : (currentCell.className = this.deathClass);
       }
     }
   }

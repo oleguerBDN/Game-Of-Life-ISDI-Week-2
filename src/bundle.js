@@ -75,6 +75,7 @@ class GameBoard {
     return this.board[y][x] === 1 ? true : false;
   }
 
+  // Print initial board
   printInitBoard() {
     for (let row = 0; row < this.size; row++) {
       let newDiv = document.createElement("div");
@@ -91,6 +92,19 @@ class GameBoard {
       }
     }
   }
+
+  // Update printed board
+  updatePrintedInitBoard() {
+    let currentCell;
+    for (let row = 0; row < this.size; row++) {
+      for (let col = 0; col < this.size; col++) {
+        currentCell = document.getElementById(row + "" + col);
+        this.isAlive(row, col)
+          ? (currentCell.className = this.aliveClass)
+          : (currentCell.className = this.deathClass);
+      }
+    }
+  }
 }
 
 module.exports = { GameBoard };
@@ -101,5 +115,13 @@ const { GameBoard } = require("./gameClass");
 const k = new GameBoard(10);
 console.log(k);
 k.printInitBoard();
+
+k.board[1][7] = 1;
+k.board[5][2] = 1;
+k.board[1][7] = 1;
+k.board[4][3] = 1;
+k.board[7][4] = 1;
+
+k.updatePrintedInitBoard();
 
 },{"./gameClass":1}]},{},[2]);
