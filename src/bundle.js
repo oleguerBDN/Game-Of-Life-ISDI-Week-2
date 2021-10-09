@@ -2,8 +2,8 @@
 class GameBoard {
   board = [];
   size = 10;
-  deathClass = "deathClass";
-  aliveClass = "aliveClass";
+  deathClass = "death";
+  aliveClass = "alive";
 
   // Default board size will be 10 if there's no number specified on the constructor
   constructor(boardSize) {
@@ -84,7 +84,9 @@ class GameBoard {
       for (let col = 0; col < this.size; col++) {
         let newChildDiv = document.createElement("div");
         newChildDiv.id = row + "" + col;
-        //newChildDiv.className = this.....;
+        this.isAlive(row, col)
+          ? (newChildDiv.className = this.aliveClass)
+          : (newChildDiv.className = this.deathClass);
         document.getElementById("row" + row).appendChild(newChildDiv);
       }
     }

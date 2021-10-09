@@ -35,13 +35,29 @@ body {
     height: 100%;
     width: 100%;
     margin: 10px 20px;
-    border: 5px dotted $color-letter;
+    //border: 5px dotted $color-letter;
 
     .container {
       display: flex;
+      justify-content: center;
+      align-items: center;
       margin: 0;
       padding: 0;
-      border: 1px solid $color-letter;
+      //border: 1px solid $color-letter;
+
+      .death {
+        width: 45px;
+        height: 45px;
+        background-color: gray;
+        border: 1px solid black;
+      }
+
+      .alive {
+        width: 45px;
+        height: 45px;
+        background-color: yellow;
+        border: 1px solid black;
+      }
     }
   }
 }
