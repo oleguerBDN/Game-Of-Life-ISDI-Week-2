@@ -19,7 +19,7 @@ describe("Given a gameBoard class", () => {
       const expected = 3;
 
       const newGame = new GameBoard(3);
-      const result = newGame.boardSize;
+      const result = newGame.size;
 
       expect(result).toBe(expected);
     });
