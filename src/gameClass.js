@@ -105,5 +105,8 @@ class GameBoard {
     }
   }
 }
+//This one is for testing only:
+//module.exports = { GameBoard };
 
-module.exports = { GameBoard };
+//This one is for browser and everything else :)
+export { GameBoard };

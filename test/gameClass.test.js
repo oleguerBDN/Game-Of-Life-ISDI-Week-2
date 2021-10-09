@@ -1,4 +1,5 @@
 const { GameBoard } = require("../src/gameClass");
+//import { GameBoard } from "/src/gameClass.js";
 
 describe("Given a gameBoard class", () => {
   describe("When creating a new gameBoard object with parameter 3", () => {
