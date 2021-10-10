@@ -8,27 +8,31 @@ myGame.printInitBoard();
 
 let interval = null;
 
+// Mobile version, starts interval
 if (navigator.userAgent.match(/Android/i)) {
-  interval = setInterval(function () {
-    myGame.board = myGame.updatedCopy();
-    myGame.updatePrintedBoard();
-  }, 3000);
+  interval = runInterval(3000);
 }
 
-// Space button to pause and replay
+//Events listeners for keyboard
 document.addEventListener("keyup", (event) => {
+  // Space button to pause and replay
   if (event.code === "Space") {
     if (interval === null) {
-      interval = setInterval(function () {
-        myGame.board = myGame.updatedCopy();
-        myGame.updatePrintedBoard();
-      }, 2000);
+      interval = runInterval(2000);
     } else {
       clearInterval(interval);
       interval = null;
     }
   }
 });
+
+// Runs interval with x seconds delay
+const runInterval = (seconds) => {
+  setInterval(function () {
+    myGame.board = myGame.updatedCopy();
+    myGame.updatePrintedBoard();
+  }, seconds);
+};
 
 // All the functionality when element is clicked goes here :)
 let onClick = (clickedItem) => {
