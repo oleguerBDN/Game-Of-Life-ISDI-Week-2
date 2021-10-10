@@ -203,12 +203,4 @@ class GameBoard {
   }
 }
 
-// let k = new GameBoard(4, 2);
-// console.table(k.board);
-// console.table(k.addWidth());
-
-//This one is for testing only:
-//module.exports = { GameBoard };
-
-//This one is for browser and everything else :)
 export { GameBoard };
