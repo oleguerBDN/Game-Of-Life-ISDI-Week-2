@@ -35,7 +35,7 @@ let assignEvents = (element) => {
 
 // Assign events to all the cells
 document
-  .querySelectorAll("." + k.deathClass, "." + k.aliveClass)
+  .querySelectorAll("." + k.deathClass + " , ." + k.aliveClass)
   .forEach((cell) => assignEvents(cell));
 
 //const matches = document.querySelectorAll(".death , .alive");
