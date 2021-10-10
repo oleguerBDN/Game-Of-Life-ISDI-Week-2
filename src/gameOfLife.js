@@ -5,11 +5,6 @@ import { GameBoard } from "./gameClass.js";
 let interval = null;
 let intervalSeconds = 2000;
 
-// Mobile version, starts interval
-if (navigator.userAgent.match(/Android/i)) {
-  interval = runInterval(3000);
-}
-
 //Events listeners for keyboard
 document.addEventListener("keyup", (event) => {
   // Space button to pause and replay
@@ -91,3 +86,8 @@ const myGame = new GameBoard(8, 8);
 
 myGame.printInitBoard();
 refreshDOM();
+
+// Mobile version, starts interval
+if (navigator.userAgent.match(/Android/i)) {
+  interval = runInterval(3000);
+}

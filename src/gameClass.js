@@ -192,7 +192,7 @@ class GameBoard {
       this.currentAliveClass = this.aliveClass;
       this.currentDeathClass = this.deathClass;
     } else {
-      if (this.sizeX <= 28 && this.sizeY <= 14) {
+      if (this.sizeX <= 28 && this.sizeY <= 15) {
         this.currentAliveClass = this.aliveClassMedium;
         this.currentDeathClass = this.deathClassMedium;
       } else {
