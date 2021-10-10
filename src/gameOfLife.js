@@ -27,14 +27,26 @@ document.addEventListener("keyup", (event) => {
     pauseResumeInterval();
   }
 
-  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+  if (event.key === "ArrowRight") {
     myGame.board = myGame.addWidth();
     refreshDOM();
     myGame.updatePrintedBoard();
   }
 
-  if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+  if (event.key === "ArrowLeft") {
+    myGame.board = myGame.substractWidth();
+    refreshDOM();
+    myGame.updatePrintedBoard();
+  }
+
+  if (event.key === "ArrowDown") {
     myGame.board = myGame.addHeight();
+    refreshDOM();
+    myGame.updatePrintedBoard();
+  }
+
+  if (event.key === "ArrowUp") {
+    myGame.board = myGame.substractHeight();
     refreshDOM();
     myGame.updatePrintedBoard();
   }
@@ -79,6 +91,3 @@ const myGame = new GameBoard(8, 8);
 
 myGame.printInitBoard();
 refreshDOM();
-
-// myGame.board = myGame.updatedCopy();
-// myGame.updatePrintedBoard();

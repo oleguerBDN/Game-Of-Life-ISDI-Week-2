@@ -5,8 +5,12 @@ class GameBoard {
   sizeY = 10;
   deathClass = "death";
   aliveClass = "alive";
-  deathClassSmall = "deathSmall"; //sizeX >20 || sizeY > 10
-  aliveClassSmall = "aliveSmall"; //sizeX >20 || sizeY > 10
+  deathClassSmall = "deathSmall";
+  aliveClassSmall = "aliveSmall";
+  deathClassMedium = "deathMedium";
+  aliveClassMedium = "aliveMedium";
+  currentAliveClass = this.aliveClass;
+  currentDeathClass = this.deathClass;
 
   // Default board size will be 10 if there's no number specified on the constructor
   constructor(width, height) {
@@ -93,8 +97,8 @@ class GameBoard {
         let newChildDiv = document.createElement("div");
         newChildDiv.id = row + "-" + col;
         this.isAlive(row, col)
-          ? (newChildDiv.className = this.aliveClass)
-          : (newChildDiv.className = this.deathClass);
+          ? (newChildDiv.className = this.currentAliveClass)
+          : (newChildDiv.className = this.currentDeathClass);
         document.getElementById("row" + row).appendChild(newChildDiv);
       }
     }
@@ -106,15 +110,9 @@ class GameBoard {
     for (let row = 0; row < this.sizeX; row++) {
       for (let col = 0; col < this.sizeY; col++) {
         currentCell = document.getElementById(row + "-" + col);
-        if (this.sizeX <= 20 && this.sizeY <= 10) {
-          this.isAlive(row, col)
-            ? (currentCell.className = this.aliveClass)
-            : (currentCell.className = this.deathClass);
-        } else {
-          this.isAlive(row, col)
-            ? (currentCell.className = this.aliveClassSmall)
-            : (currentCell.className = this.deathClassSmall);
-        }
+        this.isAlive(row, col)
+          ? (currentCell.className = this.currentAliveClass)
+          : (currentCell.className = this.currentDeathClass);
       }
     }
   }
@@ -123,9 +121,7 @@ class GameBoard {
   clickedCell(cell) {
     //console.log(cell.id);
     const coordinates = cell.id.split("-");
-    this.sizeX <= 20 && this.sizeY <= 10
-      ? (cell.className = this.aliveClass)
-      : (cell.className = this.aliveClassSmall);
+    cell.className = this.currentAliveClass;
     this.board[coordinates[0]][coordinates[1]] = 1;
   }
 
@@ -146,8 +142,8 @@ class GameBoard {
       newChildDiv.className = this.deathClass;
       document.getElementById("row" + row).appendChild(newChildDiv);
     }
-
     this.sizeX++;
+    this.currentCellClass();
     return newBoard;
   }
 
@@ -162,7 +158,48 @@ class GameBoard {
       document.getElementById("row" + row).appendChild(newChildDiv);
     }
     this.sizeY++;
+    this.currentCellClass();
     return newBoard;
+  }
+
+  substractWidth() {
+    const newBoard = this.copy();
+    const row = this.sizeX - 1;
+    let rowToDelete = document.getElementById("row" + row);
+    document.getElementById("container").removeChild(rowToDelete);
+    newBoard.pop();
+
+    this.sizeX--;
+    this.currentCellClass();
+    return newBoard;
+  }
+
+  substractHeight() {
+    const newBoard = this.copy();
+    const col = this.sizeY - 1;
+    for (let row = 0; row < this.sizeX; row++) {
+      newBoard[row].pop();
+      let colToDelete = document.getElementById(row + "-" + col);
+      document.getElementById("row" + row).removeChild(colToDelete);
+    }
+    this.sizeY--;
+    this.currentCellClass();
+    return newBoard;
+  }
+
+  currentCellClass() {
+    if (this.sizeX <= 20 && this.sizeY <= 10) {
+      this.currentAliveClass = this.aliveClass;
+      this.currentDeathClass = this.deathClass;
+    } else {
+      if (this.sizeX <= 28 && this.sizeY <= 14) {
+        this.currentAliveClass = this.aliveClassMedium;
+        this.currentDeathClass = this.deathClassMedium;
+      } else {
+        this.currentAliveClass = this.aliveClassSmall;
+        this.currentDeathClass = this.deathClassSmall;
+      }
+    }
   }
 }
 
