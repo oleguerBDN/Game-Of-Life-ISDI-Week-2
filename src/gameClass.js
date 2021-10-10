@@ -190,6 +190,18 @@ class GameBoard {
     return newBoard;
   }
 
+  //Clean the board giving all cells value 0
+  clean() {
+    const newBoard = [];
+    for (let row = 0; row < this.sizeX; row++) {
+      newBoard[row] = [];
+      for (let col = 0; col < this.sizeY; col++) {
+        newBoard[row][col] = 0;
+      }
+    }
+    return newBoard;
+  }
+
   // Update current cell class depending on the numbers of rows and cols
   currentCellClass() {
     if (this.sizeX <= 20 && this.sizeY <= 10) {
