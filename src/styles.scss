@@ -21,14 +21,10 @@ body {
     background-color: $color-red;
     font-family: $font-family;
     margin-top: 20px;
-  }
 
-  .footer {
-    @extend %header-footer;
-    color: $color-letter;
-    background-color: $color-red;
-    font-family: $font-family;
-    margin-bottom: 20px;
+    p {
+      font-size: 12px;
+    }
   }
 
   .main {
