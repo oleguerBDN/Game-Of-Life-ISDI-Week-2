@@ -27,14 +27,12 @@ class GameBoard {
         newBoard[row][col] = this.board[row][col];
       }
     }
-    console.table(newBoard);
     return newBoard;
   }
 
   // Return a new array (copy)  with updated positions
   updatedCopy() {
     const newBoard = this.copy();
-    console.table(newBoard);
     for (let row = 0; row < this.size; row++) {
       for (let col = 0; col < this.size; col++) {
         if (this.isGoingToLive(row, col)) {
@@ -83,7 +81,7 @@ class GameBoard {
       document.getElementById("container").appendChild(newDiv);
       for (let col = 0; col < this.size; col++) {
         let newChildDiv = document.createElement("div");
-        newChildDiv.id = row + "" + col;
+        newChildDiv.id = row + "-" + col;
         this.isAlive(row, col)
           ? (newChildDiv.className = this.aliveClass)
           : (newChildDiv.className = this.deathClass);
@@ -97,14 +95,23 @@ class GameBoard {
     let currentCell;
     for (let row = 0; row < this.size; row++) {
       for (let col = 0; col < this.size; col++) {
-        currentCell = document.getElementById(row + "" + col);
+        currentCell = document.getElementById(row + "-" + col);
         this.isAlive(row, col)
           ? (currentCell.className = this.aliveClass)
           : (currentCell.className = this.deathClass);
       }
     }
   }
+
+  //Receives a cell DOM, When a cell is clicked, it should change from 0 to 1 and from .death to .alive
+  clickedCell(cell) {
+    //console.log(cell.id);
+    const coordinates = cell.id.split("-");
+    cell.className = this.aliveClass;
+    this.board[coordinates[0]][coordinates[1]] = 1;
+  }
 }
+
 //This one is for testing only:
 //module.exports = { GameBoard };
 
