@@ -15,3 +15,5 @@ Arrow up will substract horizontal line, arrow down will add horizontal line, ar
 Mobile version is more simple. Just "click" any cell to make it live. 
 
 By Oleguer Carreras
+
+![](Animation.gif)
