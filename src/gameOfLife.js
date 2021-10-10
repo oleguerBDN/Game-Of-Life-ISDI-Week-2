@@ -27,8 +27,14 @@ document.addEventListener("keyup", (event) => {
     pauseResumeInterval();
   }
 
-  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+  if (event.key === "ArrowRight") {
     myGame.board = myGame.addWidth();
+    refreshDOM();
+    myGame.updatePrintedBoard();
+  }
+
+  if (event.key === "ArrowLeft") {
+    myGame.board = myGame.substractWidth();
     refreshDOM();
     myGame.updatePrintedBoard();
   }

@@ -164,6 +164,17 @@ class GameBoard {
     this.sizeY++;
     return newBoard;
   }
+
+  substractWidth() {
+    const newBoard = this.copy();
+    const row = this.sizeX - 1;
+    let rowToDelete = document.getElementById("row" + row);
+    document.getElementById("container").removeChild(rowToDelete);
+    newBoard.pop();
+
+    this.sizeX--;
+    return newBoard;
+  }
 }
 
 // let k = new GameBoard(4, 2);
