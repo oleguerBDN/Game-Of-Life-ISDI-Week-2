@@ -5,8 +5,12 @@ class GameBoard {
   sizeY = 10;
   deathClass = "death";
   aliveClass = "alive";
-  deathClassSmall = "deathSmall"; //sizeX >20 || sizeY > 10
-  aliveClassSmall = "aliveSmall"; //sizeX >20 || sizeY > 10
+  deathClassSmall = "deathSmall";
+  aliveClassSmall = "aliveSmall";
+  deathClassMedium = "deathMedium";
+  aliveClassMedium = "aliveMedium";
+  currentAliveClass = this.aliveClass;
+  currentDeathClass = this.deathClass;
 
   // Default board size will be 10 if there's no number specified on the constructor
   constructor(width, height) {
@@ -174,6 +178,33 @@ class GameBoard {
 
     this.sizeX--;
     return newBoard;
+  }
+
+  substractHeight() {
+    const newBoard = this.copy();
+    const col = this.sizeY - 1;
+    for (let row = 0; row < this.sizeX; row++) {
+      newBoard[row].pop();
+      let colToDelete = document.getElementById(row + "-" + col);
+      document.getElementById("row" + row).removeChild(colToDelete);
+    }
+    this.sizeY--;
+    return newBoard;
+  }
+
+  currentCellClass() {
+    if (this.sizeX <= 20 && this.sizeY <= 10) {
+      this.currentAliveClass = this.aliveClass;
+      this.currentDeathClass = this.deathClass;
+    } else {
+      if (this.sizeX <= 28 && this.sizeY <= 14) {
+        this.currentAliveClass = this.aliveClassMedium;
+        this.currentDeathClass = this.deathClassMedium;
+      } else {
+        this.currentAliveClass = this.aliveClassSmall;
+        this.currentDeathClass = this.deathClassSmall;
+      }
+    }
   }
 }
 
