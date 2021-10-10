@@ -31,6 +31,11 @@ document.addEventListener("keyup", (event) => {
     myGame.board = myGame.addWidth();
     refreshDOM();
   }
+
+  if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+    myGame.board = myGame.addHeight();
+    refreshDOM();
+  }
 });
 
 //Pause or resume setInterval

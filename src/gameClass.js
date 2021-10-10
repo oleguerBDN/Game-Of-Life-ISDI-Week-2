@@ -140,6 +140,20 @@ class GameBoard {
     this.sizeX++;
     return newBoard;
   }
+
+  addHeight() {
+    const newBoard = this.copy();
+    const col = this.sizeY;
+    for (let row = 0; row < this.sizeX; row++) {
+      newBoard[row][col] = 0;
+      let newChildDiv = document.createElement("div");
+      newChildDiv.id = row + "-" + col;
+      newChildDiv.className = this.deathClass;
+      document.getElementById("row" + row).appendChild(newChildDiv);
+    }
+    this.sizeY++;
+    return newBoard;
+  }
 }
 
 // let k = new GameBoard(4, 2);
