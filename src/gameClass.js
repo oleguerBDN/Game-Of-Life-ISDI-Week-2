@@ -1,18 +1,26 @@
 class GameBoard {
   board = [];
-  size = 10;
+  //size = 10;
+  sizeX = 10;
+  sizeY = 10;
   deathClass = "death";
   aliveClass = "alive";
 
   // Default board size will be 10 if there's no number specified on the constructor
-  constructor(boardSize) {
-    typeof boardSize !== "number"
-      ? (boardSize = this.size)
-      : (this.size = boardSize);
+  constructor(width, height) {
+    if (typeof height === "number") {
+      if (typeof width === "number") {
+        this.sizeY = height;
+        this.sizeX = width;
+      } else {
+        this.sizeY = width;
+        this.sizeX = width;
+      }
+    }
 
-    for (let row = 0; row < boardSize; row++) {
+    for (let row = 0; row < this.sizeX; row++) {
       this.board[row] = [];
-      for (let col = 0; col < boardSize; col++) {
+      for (let col = 0; col < this.sizeY; col++) {
         this.board[row][col] = 0;
       }
     }
@@ -21,9 +29,9 @@ class GameBoard {
   // Return a new array with the same values
   copy() {
     const newBoard = [];
-    for (let row = 0; row < this.size; row++) {
+    for (let row = 0; row < this.sizeX; row++) {
       newBoard[row] = [];
-      for (let col = 0; col < this.size; col++) {
+      for (let col = 0; col < this.sizeY; col++) {
         newBoard[row][col] = this.board[row][col];
       }
     }
@@ -33,8 +41,8 @@ class GameBoard {
   // Return a new array (copy)  with updated positions
   updatedCopy() {
     const newBoard = this.copy();
-    for (let row = 0; row < this.size; row++) {
-      for (let col = 0; col < this.size; col++) {
+    for (let row = 0; row < this.sizeX; row++) {
+      for (let col = 0; col < this.sizeY; col++) {
         if (this.isGoingToLive(row, col)) {
           newBoard[row][col] = 1;
         } else {
@@ -48,8 +56,8 @@ class GameBoard {
   // Return true (current position should live) or false (current position should die) after checking for neighbours
   isGoingToLive(y, x) {
     let neighboursAlive = 0;
-    for (let row = 0; row < this.size; row++) {
-      for (let col = 0; col < this.size; col++) {
+    for (let row = 0; row < this.sizeX; row++) {
+      for (let col = 0; col < this.sizeY; col++) {
         if (
           row >= y - 1 &&
           row <= y + 1 &&
@@ -74,12 +82,12 @@ class GameBoard {
 
   // Print initial board
   printInitBoard() {
-    for (let row = 0; row < this.size; row++) {
+    for (let row = 0; row < this.sizeX; row++) {
       let newDiv = document.createElement("div");
       newDiv.id = "row" + row;
       newDiv.className = "row";
       document.getElementById("container").appendChild(newDiv);
-      for (let col = 0; col < this.size; col++) {
+      for (let col = 0; col < this.sizeY; col++) {
         let newChildDiv = document.createElement("div");
         newChildDiv.id = row + "-" + col;
         this.isAlive(row, col)
@@ -93,8 +101,8 @@ class GameBoard {
   // Update printed board
   updatePrintedBoard() {
     let currentCell;
-    for (let row = 0; row < this.size; row++) {
-      for (let col = 0; col < this.size; col++) {
+    for (let row = 0; row < this.sizeX; row++) {
+      for (let col = 0; col < this.sizeY; col++) {
         currentCell = document.getElementById(row + "-" + col);
         this.isAlive(row, col)
           ? (currentCell.className = this.aliveClass)

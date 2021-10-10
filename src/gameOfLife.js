@@ -2,7 +2,7 @@
 
 import { GameBoard } from "./gameClass.js";
 
-const myGame = new GameBoard(10);
+const myGame = new GameBoard(15, 7);
 
 myGame.printInitBoard();
 
