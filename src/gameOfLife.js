@@ -17,18 +17,30 @@ k.board[8][9] = 1;
 k.printInitBoard();
 
 let p = setInterval(function () {
-  k.updatePrintedBoard();
   k.board = k.updatedCopy();
-}, 2000);
+  k.updatePrintedBoard();
+}, 3000);
 
-let modColor = (e) => {
-  e.target.style.backgroundColor = "green";
+// All the functionality when element is clicked goes here :)
+let onClick = (clickedItem) => {
+  if ((clickedItem.target.parentNode.id = "row")) {
+    k.clickedCell(clickedItem.target);
+  }
 };
+
+// Assign events
 let assignEvents = (element) => {
-  element.onclick = modColor;
+  element.onclick = onClick;
 };
 
-const matches = document.querySelectorAll(".death");
-const elementsToListen = [];
-matches.forEach((cell) => elementsToListen.push(cell));
-elementsToListen.forEach(assignEvents);
+// Assign events to all the cells
+document
+  .querySelectorAll("." + k.deathClass, "." + k.aliveClass)
+  .forEach((cell) => assignEvents(cell));
+
+//const matches = document.querySelectorAll(".death , .alive");
+
+//const elementsToListen = [];
+//matches.forEach((cell) => elementsToListen.push(cell));
+
+//elementsToListen.forEach(assignEvents);
