@@ -2,29 +2,31 @@
 
 import { GameBoard } from "./gameClass.js";
 
-const k = new GameBoard(10);
+const myGame = new GameBoard(10);
 
-k.board[8][8] = 1;
-k.board[1][0] = 1;
-k.board[1][1] = 1;
-k.board[1][2] = 1;
-k.board[5][2] = 1;
-k.board[5][3] = 1;
-k.board[5][4] = 1;
-k.board[7][4] = 1;
-k.board[8][9] = 1;
+myGame.printInitBoard();
 
-k.printInitBoard();
+let interval = null;
 
-let p = setInterval(function () {
-  k.board = k.updatedCopy();
-  k.updatePrintedBoard();
-}, 3000);
+// Space button to pause and replay
+document.addEventListener("keyup", (event) => {
+  if (event.code === "Space") {
+    if (interval === null) {
+      interval = setInterval(function () {
+        myGame.board = myGame.updatedCopy();
+        myGame.updatePrintedBoard();
+      }, 2000);
+    } else {
+      clearInterval(interval);
+      interval = null;
+    }
+  }
+});
 
 // All the functionality when element is clicked goes here :)
 let onClick = (clickedItem) => {
   if ((clickedItem.target.parentNode.id = "row")) {
-    k.clickedCell(clickedItem.target);
+    myGame.clickedCell(clickedItem.target);
   }
 };
 
@@ -35,12 +37,5 @@ let assignEvents = (element) => {
 
 // Assign events to all the cells
 document
-  .querySelectorAll("." + k.deathClass + " , ." + k.aliveClass)
+  .querySelectorAll("." + myGame.deathClass + " , ." + myGame.aliveClass)
   .forEach((cell) => assignEvents(cell));
-
-//const matches = document.querySelectorAll(".death , .alive");
-
-//const elementsToListen = [];
-//matches.forEach((cell) => elementsToListen.push(cell));
-
-//elementsToListen.forEach(assignEvents);
