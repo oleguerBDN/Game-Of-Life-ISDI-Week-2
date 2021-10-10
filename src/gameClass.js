@@ -118,10 +118,36 @@ class GameBoard {
     cell.className = this.aliveClass;
     this.board[coordinates[0]][coordinates[1]] = 1;
   }
+
+  // Return a new array (copy)  with updated positions
+  addWidth() {
+    const newBoard = this.copy();
+    const row = this.sizeX;
+    newBoard[row] = [];
+    let newDiv = document.createElement("div");
+    newDiv.id = "row" + row;
+    newDiv.className = "row";
+    document.getElementById("container").appendChild(newDiv);
+
+    for (let col = 0; col < this.sizeY; col++) {
+      newBoard[row][col] = 0;
+      let newChildDiv = document.createElement("div");
+      newChildDiv.id = row + "-" + col;
+      newChildDiv.className = this.deathClass;
+      document.getElementById("row" + row).appendChild(newChildDiv);
+    }
+
+    this.sizeX++;
+    return newBoard;
+  }
 }
 
+// let k = new GameBoard(4, 2);
+// console.table(k.board);
+// console.table(k.addWidth());
+
 //This one is for testing only:
-module.exports = { GameBoard };
+//module.exports = { GameBoard };
 
 //This one is for browser and everything else :)
-//export { GameBoard };
+export { GameBoard };

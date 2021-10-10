@@ -2,10 +2,6 @@
 
 import { GameBoard } from "./gameClass.js";
 
-const myGame = new GameBoard();
-
-myGame.printInitBoard();
-
 let interval = null;
 let intervalSeconds = 2000;
 
@@ -29,6 +25,11 @@ document.addEventListener("keyup", (event) => {
     intervalSeconds = intervalSeconds - 100;
     pauseResumeInterval();
     pauseResumeInterval();
+  }
+
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    myGame.board = myGame.addWidth();
+    refreshDOM();
   }
 });
 
@@ -61,6 +62,16 @@ let onClick = (clickedItem) => {
 };
 
 // Assign onclick to all the cells
-document
-  .querySelectorAll("." + myGame.deathClass + " , ." + myGame.aliveClass)
-  .forEach((cell) => (cell.onclick = onClick));
+const refreshDOM = () => {
+  document
+    .querySelectorAll("." + myGame.deathClass + " , ." + myGame.aliveClass)
+    .forEach((cell) => (cell.onclick = onClick));
+};
+
+const myGame = new GameBoard(6, 3);
+
+myGame.printInitBoard();
+refreshDOM();
+
+myGame.board = myGame.updatedCopy();
+myGame.updatePrintedBoard();
