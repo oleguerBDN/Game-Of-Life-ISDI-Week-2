@@ -7,6 +7,7 @@ const myGame = new GameBoard(10);
 myGame.printInitBoard();
 
 let interval = null;
+let intervalSeconds = 2000;
 
 // Mobile version, starts interval
 if (navigator.userAgent.match(/Android/i)) {
@@ -17,17 +18,29 @@ if (navigator.userAgent.match(/Android/i)) {
 document.addEventListener("keyup", (event) => {
   // Space button to pause and replay
   if (event.code === "Space") {
-    if (interval === null) {
-      runInterval(2000);
-    } else {
-      clearInterval(interval);
-      interval = null;
-    }
+    pauseResumeInterval();
   }
-  if (event.key === "+") {
-    console.log("mas mas");
+  if (event.key === "+" && intervalSeconds <= 3500) {
+    intervalSeconds = intervalSeconds + 100;
+    pauseResumeInterval();
+    pauseResumeInterval();
+  }
+  if (event.key === "-" && intervalSeconds >= 200) {
+    intervalSeconds = intervalSeconds - 100;
+    pauseResumeInterval();
+    pauseResumeInterval();
   }
 });
+
+//Pause or resume setInterval
+function pauseResumeInterval() {
+  if (interval === null) {
+    runInterval(intervalSeconds);
+  } else {
+    clearInterval(interval);
+    interval = null;
+  }
+}
 
 // Runs interval with x seconds delay
 const runInterval = (seconds) => {
