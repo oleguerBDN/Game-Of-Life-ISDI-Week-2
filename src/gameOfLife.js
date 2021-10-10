@@ -30,11 +30,13 @@ document.addEventListener("keyup", (event) => {
   if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
     myGame.board = myGame.addWidth();
     refreshDOM();
+    myGame.updatePrintedBoard();
   }
 
   if (event.key === "ArrowUp" || event.key === "ArrowDown") {
     myGame.board = myGame.addHeight();
     refreshDOM();
+    myGame.updatePrintedBoard();
   }
 });
 
@@ -61,7 +63,7 @@ const runInterval = (seconds) => {
 
 // All the functionality when element is clicked goes here :)
 let onClick = (clickedItem) => {
-  if ((clickedItem.target.parentNode.id = "row")) {
+  if (clickedItem.target.parentNode.className === "row") {
     myGame.clickedCell(clickedItem.target);
   }
 };
@@ -73,10 +75,10 @@ const refreshDOM = () => {
     .forEach((cell) => (cell.onclick = onClick));
 };
 
-const myGame = new GameBoard(6, 3);
+const myGame = new GameBoard(8, 8);
 
 myGame.printInitBoard();
 refreshDOM();
 
-myGame.board = myGame.updatedCopy();
-myGame.updatePrintedBoard();
+// myGame.board = myGame.updatedCopy();
+// myGame.updatePrintedBoard();

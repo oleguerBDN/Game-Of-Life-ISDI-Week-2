@@ -5,6 +5,8 @@ class GameBoard {
   sizeY = 10;
   deathClass = "death";
   aliveClass = "alive";
+  deathClassSmall = "deathSmall"; //sizeX >20 || sizeY > 10
+  aliveClassSmall = "aliveSmall"; //sizeX >20 || sizeY > 10
 
   // Default board size will be 10 if there's no number specified on the constructor
   constructor(width, height) {
@@ -104,9 +106,15 @@ class GameBoard {
     for (let row = 0; row < this.sizeX; row++) {
       for (let col = 0; col < this.sizeY; col++) {
         currentCell = document.getElementById(row + "-" + col);
-        this.isAlive(row, col)
-          ? (currentCell.className = this.aliveClass)
-          : (currentCell.className = this.deathClass);
+        if (this.sizeX <= 20 && this.sizeY <= 10) {
+          this.isAlive(row, col)
+            ? (currentCell.className = this.aliveClass)
+            : (currentCell.className = this.deathClass);
+        } else {
+          this.isAlive(row, col)
+            ? (currentCell.className = this.aliveClassSmall)
+            : (currentCell.className = this.deathClassSmall);
+        }
       }
     }
   }
@@ -115,7 +123,9 @@ class GameBoard {
   clickedCell(cell) {
     //console.log(cell.id);
     const coordinates = cell.id.split("-");
-    cell.className = this.aliveClass;
+    this.sizeX <= 20 && this.sizeY <= 10
+      ? (cell.className = this.aliveClass)
+      : (cell.className = this.aliveClassSmall);
     this.board[coordinates[0]][coordinates[1]] = 1;
   }
 
