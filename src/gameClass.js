@@ -97,8 +97,8 @@ class GameBoard {
         let newChildDiv = document.createElement("div");
         newChildDiv.id = row + "-" + col;
         this.isAlive(row, col)
-          ? (newChildDiv.className = this.aliveClass)
-          : (newChildDiv.className = this.deathClass);
+          ? (newChildDiv.className = this.currentAliveClass)
+          : (newChildDiv.className = this.currentDeathClass);
         document.getElementById("row" + row).appendChild(newChildDiv);
       }
     }
@@ -110,15 +110,9 @@ class GameBoard {
     for (let row = 0; row < this.sizeX; row++) {
       for (let col = 0; col < this.sizeY; col++) {
         currentCell = document.getElementById(row + "-" + col);
-        if (this.sizeX <= 20 && this.sizeY <= 10) {
-          this.isAlive(row, col)
-            ? (currentCell.className = this.aliveClass)
-            : (currentCell.className = this.deathClass);
-        } else {
-          this.isAlive(row, col)
-            ? (currentCell.className = this.aliveClassSmall)
-            : (currentCell.className = this.deathClassSmall);
-        }
+        this.isAlive(row, col)
+          ? (currentCell.className = this.currentAliveClass)
+          : (currentCell.className = this.currentDeathClass);
       }
     }
   }
@@ -127,9 +121,7 @@ class GameBoard {
   clickedCell(cell) {
     //console.log(cell.id);
     const coordinates = cell.id.split("-");
-    this.sizeX <= 20 && this.sizeY <= 10
-      ? (cell.className = this.aliveClass)
-      : (cell.className = this.aliveClassSmall);
+    cell.className = this.currentAliveClass;
     this.board[coordinates[0]][coordinates[1]] = 1;
   }
 
@@ -150,8 +142,8 @@ class GameBoard {
       newChildDiv.className = this.deathClass;
       document.getElementById("row" + row).appendChild(newChildDiv);
     }
-
     this.sizeX++;
+    this.currentCellClass();
     return newBoard;
   }
 
@@ -166,6 +158,7 @@ class GameBoard {
       document.getElementById("row" + row).appendChild(newChildDiv);
     }
     this.sizeY++;
+    this.currentCellClass();
     return newBoard;
   }
 
@@ -177,6 +170,7 @@ class GameBoard {
     newBoard.pop();
 
     this.sizeX--;
+    this.currentCellClass();
     return newBoard;
   }
 
@@ -189,6 +183,7 @@ class GameBoard {
       document.getElementById("row" + row).removeChild(colToDelete);
     }
     this.sizeY--;
+    this.currentCellClass();
     return newBoard;
   }
 
