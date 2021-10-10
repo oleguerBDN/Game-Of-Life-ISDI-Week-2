@@ -41,12 +41,7 @@ let onClick = (clickedItem) => {
   }
 };
 
-// Assign events
-let assignEvents = (element) => {
-  element.onclick = onClick;
-};
-
-// Assign events to all the cells
+// Assign onclick to all the cells
 document
   .querySelectorAll("." + myGame.deathClass + " , ." + myGame.aliveClass)
-  .forEach((cell) => assignEvents(cell));
+  .forEach((cell) => (cell.onclick = onClick));
