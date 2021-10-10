@@ -18,20 +18,26 @@ document.addEventListener("keyup", (event) => {
   // Space button to pause and replay
   if (event.code === "Space") {
     if (interval === null) {
-      interval = runInterval(2000);
+      runInterval(2000);
     } else {
       clearInterval(interval);
       interval = null;
     }
   }
+  if (event.key === "+") {
+    console.log("mas mas");
+  }
 });
 
 // Runs interval with x seconds delay
 const runInterval = (seconds) => {
-  setInterval(function () {
-    myGame.board = myGame.updatedCopy();
-    myGame.updatePrintedBoard();
-  }, seconds);
+  console.log("sec: " + seconds);
+  if (seconds !== undefined) {
+    interval = setInterval(function () {
+      myGame.board = myGame.updatedCopy();
+      myGame.updatePrintedBoard();
+    }, seconds);
+  }
 };
 
 // All the functionality when element is clicked goes here :)
