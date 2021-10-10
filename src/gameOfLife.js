@@ -45,6 +45,11 @@ document.addEventListener("keyup", (event) => {
     refreshDOM();
     myGame.updatePrintedBoard();
   }
+
+  if (event.key === "Backspace") {
+    myGame.board = myGame.clean();
+    myGame.updatePrintedBoard();
+  }
 });
 
 //Pause or resume setInterval
