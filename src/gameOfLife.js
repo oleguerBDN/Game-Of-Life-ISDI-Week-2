@@ -8,6 +8,13 @@ myGame.printInitBoard();
 
 let interval = null;
 
+if (navigator.userAgent.match(/Android/i)) {
+  interval = setInterval(function () {
+    myGame.board = myGame.updatedCopy();
+    myGame.updatePrintedBoard();
+  }, 3000);
+}
+
 // Space button to pause and replay
 document.addEventListener("keyup", (event) => {
   if (event.code === "Space") {
