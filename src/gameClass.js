@@ -8,8 +8,8 @@ class GameBoard {
 
   // Default board size will be 10 if there's no number specified on the constructor
   constructor(width, height) {
-    if (typeof height === "number") {
-      if (typeof width === "number") {
+    if (typeof width === "number") {
+      if (typeof height === "number") {
         this.sizeY = height;
         this.sizeX = width;
       } else {
@@ -121,7 +121,7 @@ class GameBoard {
 }
 
 //This one is for testing only:
-//module.exports = { GameBoard };
+module.exports = { GameBoard };
 
 //This one is for browser and everything else :)
-export { GameBoard };
+//export { GameBoard };

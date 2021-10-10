@@ -16,11 +16,31 @@ describe("Given a gameBoard class", () => {
       expect(result).toEqual(expected);
     });
 
-    test("Then the boardSize propertie should return 3", () => {
+    test("Then the sizeX propertie should return 3", () => {
       const expected = 3;
 
       const newGame = new GameBoard(3);
-      const result = newGame.size;
+      const result = newGame.sizeX;
+
+      expect(result).toBe(expected);
+    });
+  });
+
+  describe("When creating a new gameBoard object with parameter 2,7", () => {
+    test("Then the sizeY propertie should return 7", () => {
+      const expected = 7;
+
+      const newGame = new GameBoard(2, 7);
+      const result = newGame.sizeY;
+
+      expect(result).toBe(expected);
+    });
+
+    test("Then the sizeX propertie should return 2", () => {
+      const expected = 2;
+
+      const newGame = new GameBoard(2, 7);
+      const result = newGame.sizeX;
 
       expect(result).toBe(expected);
     });
