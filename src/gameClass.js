@@ -125,7 +125,7 @@ class GameBoard {
     this.board[coordinates[0]][coordinates[1]] = 1;
   }
 
-  // Return a new array (copy)  with updated positions
+  // Add width
   addWidth() {
     const newBoard = this.copy();
     const row = this.sizeX;
@@ -147,6 +147,7 @@ class GameBoard {
     return newBoard;
   }
 
+  // Add height
   addHeight() {
     const newBoard = this.copy();
     const col = this.sizeY;
@@ -162,6 +163,7 @@ class GameBoard {
     return newBoard;
   }
 
+  // Substract width
   substractWidth() {
     const newBoard = this.copy();
     const row = this.sizeX - 1;
@@ -174,6 +176,7 @@ class GameBoard {
     return newBoard;
   }
 
+  // Substract height
   substractHeight() {
     const newBoard = this.copy();
     const col = this.sizeY - 1;
@@ -187,6 +190,7 @@ class GameBoard {
     return newBoard;
   }
 
+  // Update current cell class depending on the numbers of rows and cols
   currentCellClass() {
     if (this.sizeX <= 20 && this.sizeY <= 10) {
       this.currentAliveClass = this.aliveClass;
@@ -203,4 +207,8 @@ class GameBoard {
   }
 }
 
+//This one is for testing only:
+//module.exports = { GameBoard };
+
+//This one is for browser and everything else :)
 export { GameBoard };

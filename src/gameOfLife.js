@@ -82,8 +82,8 @@ const refreshDOM = () => {
     .forEach((cell) => (cell.onclick = onClick));
 };
 
+// *** START GAME ***
 const myGame = new GameBoard(8, 8);
-
 myGame.printInitBoard();
 refreshDOM();
 
