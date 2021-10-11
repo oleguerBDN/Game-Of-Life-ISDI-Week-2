@@ -94,5 +94,5 @@ refreshDOM();
 
 // Mobile version, starts interval
 if (navigator.userAgent.match(/Android/i)) {
-  interval = runInterval(3000);
+  runInterval(3000);
 }
