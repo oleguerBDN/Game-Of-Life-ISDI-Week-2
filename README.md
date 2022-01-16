@@ -1,4 +1,8 @@
-# 202109-W2WEEKEND
+# Game Of Life 
+
+ISDI Coders Bootcamp -Week 2 
+
+JS Vainilla 
 
 https://ole-game-of-life.netlify.app/
 
